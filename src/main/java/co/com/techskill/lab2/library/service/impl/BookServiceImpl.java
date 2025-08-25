@@ -1,18 +1,11 @@
 package co.com.techskill.lab2.library.service.impl;
-
 import co.com.techskill.lab2.library.config.BookMapper;
-import co.com.techskill.lab2.library.config.BookMapperImpl;
-import co.com.techskill.lab2.library.domain.dto.BookDTO;
-import co.com.techskill.lab2.library.domain.dto.PetitionDTO;
-import co.com.techskill.lab2.library.repository.IBookRepository;
 import co.com.techskill.lab2.library.service.IBookService;
-import io.github.resilience4j.circuitbreaker.CircuitBreaker;
-import io.github.resilience4j.reactor.circuitbreaker.operator.CircuitBreakerOperator;
+import co.com.techskill.lab2.library.domain.dto.BookDTO;
+import co.com.techskill.lab2.library.repository.IBookRepository;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-
-import java.time.Duration;
 import java.util.UUID;
 
  /*Operadores fundamentales
@@ -55,10 +48,11 @@ public class BookServiceImpl implements IBookService {
     private final IBookRepository bookRepository;
     private final BookMapper bookMapper;
 
-    public BookServiceImpl(IBookRepository bookRepository){
-        this.bookRepository = bookRepository;
-        this.bookMapper = new BookMapperImpl();
-    }
+   public BookServiceImpl(IBookRepository bookRepository, BookMapper bookMapper) {
+    this.bookRepository = bookRepository;
+    this.bookMapper = bookMapper;  
+}
+
 
 
     @Override

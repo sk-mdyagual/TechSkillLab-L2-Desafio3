@@ -1,8 +1,8 @@
 package co.com.techskill.lab2.library.actor;
 
 import co.com.techskill.lab2.library.domain.entity.Petition;
-import co.com.techskill.lab2.library.repository.IBookRepository;
 import org.springframework.stereotype.Component;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 import java.time.Duration;
@@ -10,25 +10,17 @@ import java.time.Duration;
 @Component
 public class LendActor implements Actor {
 
-    private final IBookRepository bookRepository;
-
-    private LendActor(IBookRepository bookRepository){
-        this.bookRepository = bookRepository;
-    }
-
     @Override
     public boolean supports(String type) {
-        return "LEND".equals(type);
+        return "LEND".equalsIgnoreCase(type);
     }
 
     @Override
-    public Mono<String> handle(Petition petition) {
-        return Mono.zip(
-                Mono.just(petition),
-                bookRepository.findByBookId(petition.getBookId()))
-                .delayElement(Duration.ofMillis(300))
-                .map(t ->
-                   String.format("[LEND] petition for book: %s with priority %d",t.getT2().getBookId(), t.getT1().getPriority())
-                );
+    public Flux<String> handle(Petition petition) {
+    
+        return Mono.just("LEND OK -> id=%s priority=%d"
+                        .formatted(petition.getPetitionId(), petition.getPriority()))
+                   .delayElement(Duration.ofMillis(100))
+                   .flux();
     }
 }
