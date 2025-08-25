@@ -1,7 +1,6 @@
 package co.com.techskill.lab2.library.service.impl;
 
 import co.com.techskill.lab2.library.config.PetitionMapper;
-import co.com.techskill.lab2.library.config.PetitionMapperImpl;
 import co.com.techskill.lab2.library.domain.dto.PetitionDTO;
 import co.com.techskill.lab2.library.repository.IPetitionRepository;
 import co.com.techskill.lab2.library.service.IPetitionService;
@@ -62,11 +61,14 @@ public class PetitionServiceImpl implements IPetitionService {
     private final IBookRepository bookRepository;
     private final PetitionMapper petitionMapper;
 
-    public PetitionServiceImpl(IPetitionRepository petitionRepository, IBookRepository bookRepository) {
-        this.petitionRepository = petitionRepository;
-        this.bookRepository = bookRepository;
-        this.petitionMapper = new PetitionMapperImpl();
-    }
+public PetitionServiceImpl(IPetitionRepository petitionRepository,
+                           IBookRepository bookRepository,
+                           PetitionMapper petitionMapper) {
+    this.petitionRepository = petitionRepository;
+    this.bookRepository = bookRepository;
+    this.petitionMapper = petitionMapper; 
+}
+
     @Override
     public Flux<PetitionDTO> findALl() {
         return petitionRepository
