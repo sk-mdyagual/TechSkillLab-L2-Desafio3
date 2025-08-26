@@ -19,7 +19,7 @@ public class OrchestratorResource {
         this.orchestratorService = orchestratorService;
     }
 
-    @GetMapping(name="/start",
+    @GetMapping(value="/start",
     produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public Flux<String> start(){
         return orchestratorService.orchestrate();

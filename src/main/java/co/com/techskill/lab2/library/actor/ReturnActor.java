@@ -2,12 +2,14 @@ package co.com.techskill.lab2.library.actor;
 
 import co.com.techskill.lab2.library.domain.entity.Petition;
 import co.com.techskill.lab2.library.repository.IBookRepository;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 
 import java.time.Duration;
 
 @Component
+@Profile("mongo")
 public class ReturnActor implements Actor {
     private final IBookRepository bookRepository;
 
