@@ -1,6 +1,7 @@
 package co.com.techskill.lab2.library.service.impl;
 
 import co.com.techskill.lab2.library.actor.Actor;
+import co.com.techskill.lab2.library.domain.entity.Petition;
 import co.com.techskill.lab2.library.repository.IPetitionRepository;
 import co.com.techskill.lab2.library.service.IOrchestratorService;
 import org.springframework.stereotype.Service;
@@ -8,6 +9,7 @@ import reactor.core.publisher.Flux;
 import reactor.core.scheduler.Schedulers;
 
 import java.time.Duration;
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -40,7 +42,16 @@ public class OrchestratorServiceImpl implements IOrchestratorService {
                             .orElseThrow(() -> new IllegalStateException("No actor type " + type));
                     System.out.println("Agrupación por tipo");
 
-                    if("LEND".equals(type)){
+                    if("INSPECT".equals(type) ){
+                        return g.filter(p -> p.getPriority() >= 7)
+                                .sort(Comparator.comparingInt(Petition::getPriority))
+                                .flatMapSequential(petition -> actor.handle(petition)
+                                                .doOnSubscribe(s -> System.out.println("Procesando petición de tipo [INSPECT] con ID "+petition.getPetitionId() + " priority:" + petition.getPriority()))
+                                                .doOnNext(res -> System.out.println("Proceso exitoso"))
+                                                .doOnError(err-> System.out.println("Procesamiento falló - "+err.getMessage())),
+                                        4)
+                                .onErrorContinue((err, p) -> System.out.println("Petitición omitida " + err.getMessage()));
+                    } else if("LEND".equals(type)){
                         return g.sort((a,b) -> Integer.compare(b.getPriority(), a.getPriority()))
                                 .doOnNext(petition -> System.out.println(String.format("Petición [LEND] con ID: %s en cola",
                                         petition.getPetitionId())))
@@ -49,7 +60,7 @@ public class OrchestratorServiceImpl implements IOrchestratorService {
                                 .doOnNext(res -> System.out.println("Proceso exitoso"))
                                 .doOnError(err-> System.out.println("Procesamiento falló - "+err.getMessage()))
                                 .onErrorContinue((err, p) -> System.out.println("Petitición omitida " + err.getMessage()));
-                    }else{
+                    } else {
                         return g.flatMap(petition -> actor.handle(petition)
                                 .doOnSubscribe(s -> System.out.println("Procesando petición de tipo [RETURN] con ID "+petition.getPetitionId()))
                                 .doOnNext(res -> System.out.println("Proceso exitoso"))
