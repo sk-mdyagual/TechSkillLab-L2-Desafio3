@@ -22,6 +22,11 @@ public class OrchestratorServiceImpl implements IOrchestratorService {
 
     @Override
     public Flux<String> orchestrate() {
+        return null;
+    }
+
+    /*@Override
+    public Flux<String> orchestrate() {
         return petitionRepository.findAll()
                 .limitRate(20)
                 .publishOn(Schedulers.boundedElastic())
@@ -63,4 +68,5 @@ public class OrchestratorServiceImpl implements IOrchestratorService {
                 .onErrorResume(err-> Flux.just("Error - "+ err.getMessage()))
                 .doOnComplete(() -> System.out.println("Orchestration complete"));
     }
+     */
 }

@@ -1,0 +1,90 @@
+Petici�n encontrada con ID: 2f5fca21-b de tipo RETURN
+Petici�n encontrada con ID: 4c9ef769-9 de tipo LEND
+Petici�n encontrada con ID: 9cc825c1-7 de tipo RETURN
+Petici�n encontrada con ID: 4ebc9aa6-f de tipo RETURN
+Petici�n encontrada con ID: 8595a9b7-7 de tipo RETURN
+Petici�n encontrada con ID: cbfdd0aa-c de tipo RETURN
+Petici�n encontrada con ID: 86084e60-e de tipo RETURN
+Petici�n encontrada con ID: 7589dda0-0 de tipo RETURN
+Petici�n encontrada con ID: 85d507b5-1 de tipo LEND
+Petici�n encontrada con ID: 1c67c444-2 de tipo RETURN
+Petici�n encontrada con ID: d5380ce2-3 de tipo LEND
+Petici�n encontrada con ID: 58aa0cbf-4 de tipo LEND
+Petici�n encontrada con ID: 836cbf00-5 de tipo RETURN
+Petici�n encontrada con ID: 1f634457-6 de tipo RETURN
+Petici�n encontrada con ID: 2f5fca21-b de tipo INSPECT
+Petici�n encontrada con ID: 58aa0cbf-4 de tipo INSPECT
+Petici�n encontrada con ID: 836cbf00-5 de tipo INSPECT
+Petici�n encontrada con ID: 1f634457-6 de tipo INSPECT
+Agrupaci�n por tipo
+Petici�n [RETURN] con ID: 7589dda0-0 en cola
+Procesando petici�n con ID 7589dda0-0
+Agrupaci�n por tipo
+Petici�n [LEND] con ID: 58aa0cbf-4 en cola
+Procesando petici�n con ID 58aa0cbf-4
+Agrupaci�n por tipo
+Procesando petici�n de tipo [INSPECT] con ID 58aa0cbf-4
+Proceso exitoso
+Next: [INSPECT] Petition for book: 6600ab76-3 with priority 10
+Procesando petici�n de tipo [INSPECT] con ID 836cbf00-5
+Proceso exitoso
+Procesando petici�n de tipo [INSPECT] con ID 1f634457-6
+Proceso exitoso
+Procesando petici�n de tipo [INSPECT] con ID 2f5fca21-b
+Proceso exitoso
+Next: [INSPECT] Petition for book: 6600ab76-3 with priority 9
+Next: [INSPECT] Petition for book: 6600ab76-3 with priority 8
+Next: [INSPECT] Petition for book: 12a13228-0 with priority 7
+Proceso exitoso
+Next: [RETURN] petition for book: 6600ab76-3 with priority 10
+Petici�n [RETURN] con ID: 836cbf00-5 en cola
+Procesando petici�n con ID 836cbf00-5
+Proceso exitoso
+Next: [RETURN] petition for book: 6600ab76-3 with priority 9
+Petici�n [RETURN] con ID: 1c67c444-2 en cola
+Procesando petici�n con ID 1c67c444-2
+Proceso exitoso
+Next: [LEND] petition for book: 6600ab76-3 with priority 10
+Petici�n [LEND] con ID: 85d507b5-1 en cola
+Procesando petici�n con ID 85d507b5-1
+Proceso exitoso
+Next: [RETURN] petition for book: 6600ab76-3 with priority 8
+Petici�n [RETURN] con ID: 1f634457-6 en cola
+Procesando petici�n con ID 1f634457-6
+Proceso exitoso
+Next: [RETURN] petition for book: 6600ab76-3 with priority 8
+Petici�n [RETURN] con ID: 2f5fca21-b en cola
+Procesando petici�n con ID 2f5fca21-b
+Proceso exitoso
+Next: [RETURN] petition for book: 12a13228-0 with priority 7
+Petici�n [RETURN] con ID: 9cc825c1-7 en cola
+Procesando petici�n con ID 9cc825c1-7
+Proceso exitoso
+Next: [LEND] petition for book: 6600ab76-3 with priority 9
+Petici�n [LEND] con ID: d5380ce2-3 en cola
+Procesando petici�n con ID d5380ce2-3
+Proceso exitoso
+Next: [RETURN] petition for book: 12a13228-0 with priority 7
+Petici�n [RETURN] con ID: 4ebc9aa6-f en cola
+Procesando petici�n con ID 4ebc9aa6-f
+Proceso exitoso
+Next: [RETURN] petition for book: 3c24c2fa-3 with priority 7
+Petici�n [RETURN] con ID: 8595a9b7-7 en cola
+Procesando petici�n con ID 8595a9b7-7
+Proceso exitoso
+Next: [RETURN] petition for book: 51ed516f-a with priority 7
+Petici�n [RETURN] con ID: cbfdd0aa-c en cola
+Procesando petici�n con ID cbfdd0aa-c
+Proceso exitoso
+Next: [LEND] petition for book: 6600ab76-3 with priority 9
+Petici�n [LEND] con ID: 4c9ef769-9 en cola
+Procesando petici�n con ID 4c9ef769-9
+Proceso exitoso
+Next: [RETURN] petition for book: 1940136a-2 with priority 7
+Petici�n [RETURN] con ID: 86084e60-e en cola
+Procesando petici�n con ID 86084e60-e
+Proceso exitoso
+Next: [RETURN] petition for book: 11b553eb-b with priority 7
+Proceso exitoso
+Next: [LEND] petition for book: 51ed516f-a with priority 7
+Orchestration complete
