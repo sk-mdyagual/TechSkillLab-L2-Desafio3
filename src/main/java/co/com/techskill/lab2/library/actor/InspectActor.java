@@ -9,16 +9,16 @@ import reactor.core.publisher.Mono;
 import java.time.Duration;
 
 @Component
-public class ReturnActor implements Actor {
+public class InspectActor implements Actor {
     private final BookService bookRepository;
 
-    private ReturnActor(BookService bookRepository){
+    private InspectActor(BookService bookRepository){
         this.bookRepository = bookRepository;
     }
 
     @Override
     public boolean supports(String type) {
-        return "RETURN".equals(type);
+        return "INSPECT".equals(type);
     }
 
     @Override
@@ -28,7 +28,7 @@ public class ReturnActor implements Actor {
                         bookRepository.dummyFindById(petition.getBookId()))
                 .delayElement(Duration.ofMillis(100))
                 .map(t ->
-                        String.format("[RETURN] petition for book: %s with priority %d",t.getT2().getBookId(), t.getT1().getPriority())
+                        String.format("[INSPECT] petition for book: %s with priority %d",t.getT2().getBookId(), t.getT1().getPriority())
                 );
     }
 }

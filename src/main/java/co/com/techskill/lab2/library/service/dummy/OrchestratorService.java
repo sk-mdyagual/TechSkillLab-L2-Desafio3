@@ -1,11 +1,8 @@
-package co.com.techskill.lab2.library.service.impl;
+package co.com.techskill.lab2.library.service.dummy;
 
 import co.com.techskill.lab2.library.actor.Actor;
-import co.com.techskill.lab2.library.domain.dto.PetitionDTO;
 import co.com.techskill.lab2.library.domain.entity.Petition;
-import co.com.techskill.lab2.library.repository.IPetitionRepository;
 import co.com.techskill.lab2.library.service.IOrchestratorService;
-import co.com.techskill.lab2.library.service.dummy.PetitionService;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.scheduler.Schedulers;
@@ -14,18 +11,18 @@ import java.time.Duration;
 import java.util.List;
 
 @Service
-public class OrchestratorServiceImpl implements IOrchestratorService {
-    private final IPetitionRepository petitionRepository;
+public class OrchestratorService implements IOrchestratorService {
+    private final PetitionService petitionRepository;
     private final List<Actor> actors;
 
-    public OrchestratorServiceImpl(IPetitionRepository petitionRepository, List<Actor> actors) {
+    public OrchestratorService(PetitionService petitionRepository, List<Actor> actors) {
         this.petitionRepository = petitionRepository;
         this.actors = actors;
     }
 
     @Override
     public Flux<String> orchestrate() {
-        return petitionRepository.findAll()
+        return petitionRepository.dummyFindAll()
                 .limitRate(20)
                 .publishOn(Schedulers.boundedElastic())
                 .doOnSubscribe(s -> System.out.println("Inicio orquestación..."))
@@ -45,8 +42,8 @@ public class OrchestratorServiceImpl implements IOrchestratorService {
                     if ("INSPECT".equals(type)){
                         return g.filter(petition -> petition.getPriority() >= 7)
                                 .sort((a,b) -> Integer.compare(b.getPriority(), a.getPriority()))
-                                .doOnNext(petition -> System.out.printf("Petición [INSPECT] con ID: %s en cola%n",
-                                        petition.getPetitionId()))
+                                .doOnNext(petition -> System.out.println(String.format("Petición [INSPECT] con ID: %s en cola",
+                                        petition.getPetitionId())))
                                 .flatMapSequential( petition -> actor.handle(petition)
                                         .doOnSubscribe(s -> System.out.println("Procesando petición con ID "+petition.getPetitionId())))
                                 .doOnNext(res -> System.out.println("Proceso exitoso"))
@@ -55,8 +52,8 @@ public class OrchestratorServiceImpl implements IOrchestratorService {
                     }
                     else if("LEND".equals(type)){
                         return g.sort((a,b) -> Integer.compare(b.getPriority(), a.getPriority()))
-                                .doOnNext(petition -> System.out.printf("Petición [LEND] con ID: %s en cola%n",
-                                        petition.getPetitionId()))
+                                .doOnNext(petition -> System.out.println(String.format("Petición [LEND] con ID: %s en cola",
+                                        petition.getPetitionId())))
                                 .concatMap( petition -> actor.handle(petition)
                                         .doOnSubscribe(s -> System.out.println("Procesando petición con ID "+petition.getPetitionId())))
                                 .doOnNext(res -> System.out.println("Proceso exitoso"))
