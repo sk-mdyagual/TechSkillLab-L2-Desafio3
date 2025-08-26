@@ -8,27 +8,27 @@ import reactor.core.publisher.Mono;
 import java.time.Duration;
 
 @Component
-public class LendActor implements Actor {
+public class InspectActor implements Actor {
 
     private final BookService bookService;
 
-    private LendActor(BookService bookService){
+    private InspectActor(BookService bookService){
         this.bookService = bookService;
     }
 
     @Override
     public boolean supports(String type) {
-        return "LEND".equals(type);
+        return "INSPECT".equals(type);
     }
 
     @Override
     public Mono<String> handle(Petition petition) {
         return Mono.zip(
-                Mono.just(petition),
+                        Mono.just(petition),
                         bookService.dummyFindById(petition.getBookId()))
-                .delayElement(Duration.ofMillis(300))
+                .delayElement(Duration.ofMillis(100))
                 .map(t ->
-                   String.format("[LEND] petition for book: %s with priority %d",t.getT2().getBookId(), t.getT1().getPriority())
+                        String.format("[INSPECT] petition for book: %s with priority %d",t.getT2().getBookId(), t.getT1().getPriority())
                 );
     }
 }

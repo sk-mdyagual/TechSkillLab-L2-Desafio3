@@ -8,7 +8,7 @@ import java.time.LocalDate;
 @Document(collection = "petitions")
 public class Petition {
     private String petitionId;
-    private String type; //LEND - RETURN
+    private String type; //LEND - RETURN - INSPECT
     private Integer priority;
     private String bookId;
     private LocalDate sentAt;
