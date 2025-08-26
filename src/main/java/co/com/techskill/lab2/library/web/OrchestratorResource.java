@@ -22,6 +22,9 @@ public class OrchestratorResource {
     @GetMapping(name="/start",
     produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public Flux<String> start(){
+        System.out.println("Entro al EndPoint");
         return orchestratorService.orchestrate();
     }
+
+
 }
