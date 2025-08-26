@@ -6,6 +6,7 @@ import co.com.techskill.lab2.library.domain.dto.PetitionDTO;
 import co.com.techskill.lab2.library.repository.IPetitionRepository;
 import co.com.techskill.lab2.library.service.IPetitionService;
 import co.com.techskill.lab2.library.repository.IBookRepository;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -52,6 +53,7 @@ import java.util.UUID;
 
 
 @Service
+@Profile("mongo")
 public class PetitionServiceImpl implements IPetitionService {
     /*
      * Cambiar de MongoDB síncrono a ReactiveMongoDB no te hace las consultas más rápidas en sí,
