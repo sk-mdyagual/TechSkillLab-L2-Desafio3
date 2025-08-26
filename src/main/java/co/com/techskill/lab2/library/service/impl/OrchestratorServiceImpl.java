@@ -22,7 +22,7 @@ public class OrchestratorServiceImpl implements IOrchestratorService {
 
     @Override
     public Flux<String> orchestrate() {
-        return petitionRepository.findAll()
+        /*return petitionRepository.findAll()
                 .limitRate(20)
                 .publishOn(Schedulers.boundedElastic())
                 .doOnSubscribe(s -> System.out.println("Inicio orquestación..."))
@@ -62,5 +62,6 @@ public class OrchestratorServiceImpl implements IOrchestratorService {
                 .doOnNext(s -> System.out.println("Next: "+s))
                 .onErrorResume(err-> Flux.just("Error - "+ err.getMessage()))
                 .doOnComplete(() -> System.out.println("Orchestration complete"));
+    }*/        return Flux.empty();
     }
 }

@@ -2,25 +2,21 @@ package co.com.techskill.lab2.library.actor;
 
 import co.com.techskill.lab2.library.domain.dto.PetitionDTO;
 import co.com.techskill.lab2.library.domain.entity.Petition;
-import co.com.techskill.lab2.library.repository.IBookRepository;
-import co.com.techskill.lab2.library.service.IBookService;
 import co.com.techskill.lab2.library.service.IBookServiceDummy;
-import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 
-import java.time.Duration;
+public class NewInspectActor implements Actor {
 
-@Component
-public class ReturnActor implements Actor {
     private final IBookServiceDummy bookRepository;
 
-    public ReturnActor(IBookServiceDummy bookRepository){
+    public NewInspectActor(IBookServiceDummy bookRepository) {
         this.bookRepository = bookRepository;
     }
 
+
     @Override
     public boolean supports(String type) {
-        return "RETURN".equals(type);
+        return "INSPECT".equalsIgnoreCase(type);
     }
 
     @Override
@@ -28,9 +24,9 @@ public class ReturnActor implements Actor {
         return Mono.zip(
                         Mono.just(petition),
                         bookRepository.dummyFindById(petition.getBookId()))
-                .delayElement(Duration.ofMillis(100))
+                .delayElement(java.time.Duration.ofSeconds(2))
                 .map(t ->
-                        String.format("[RETURN] petition for book: %s with priority %d",t.getT2().getBookId(), t.getT1().getPriority())
+                        String.format("[INSPECT] petition for book: %s with priority %d", t.getT2().getBookId(), t.getT1().getPriority())
                 );
     }
 }
