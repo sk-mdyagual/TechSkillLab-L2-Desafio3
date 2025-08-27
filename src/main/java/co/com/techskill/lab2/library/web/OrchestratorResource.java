@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
 
-import java.awt.*;
 
 @RestController
 @RequestMapping("/orchestrate")
@@ -20,8 +19,11 @@ public class OrchestratorResource {
     }
 
     @GetMapping(name="/start",
-    produces = MediaType.TEXT_EVENT_STREAM_VALUE)
+            produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public Flux<String> start(){
+        System.out.println("inicializacion");
         return orchestratorService.orchestrate();
     }
+
+
 }
