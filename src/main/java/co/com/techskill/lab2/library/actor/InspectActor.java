@@ -1,36 +1,30 @@
 package co.com.techskill.lab2.library.actor;
 
 import co.com.techskill.lab2.library.domain.dto.PetitionDTO;
-import co.com.techskill.lab2.library.domain.entity.Petition;
-import co.com.techskill.lab2.library.repository.IBookRepository;
 import co.com.techskill.lab2.library.service.dummy.BookService;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 
-import java.time.Duration;
-
 @Component
-public class LendActor implements Actor {
-
+public class InspectActor implements Actor {
     private final BookService bookService;
 
-    private LendActor(BookService bookService){
-        this.bookService = bookService;
+    public InspectActor(BookService bookServiceb) {
+        this.bookService = bookServiceb;
     }
 
     @Override
     public boolean supports(String type) {
-        return "LEND".equals(type);
+        return "INSPECT".equals(type);
     }
 
     @Override
     public Mono<String> handle(PetitionDTO petition) {
         return Mono.zip(
-                Mono.just(petition),
+                        Mono.just(petition),
                         bookService.findByBookId(petition.getBookId()))
-                .delayElement(Duration.ofMillis(300))
                 .map(t ->
-                   String.format("[LEND] petition for book: %s with priority %d",t.getT2().getBookId(), t.getT1().getPriority())
+                        String.format("[INSPECT] petition for book: %s with priority %d", t.getT2().getBookId(), t.getT1().getPriority())
                 );
     }
 }
