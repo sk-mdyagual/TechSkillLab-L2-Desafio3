@@ -32,7 +32,7 @@ public class OrchestratorServiceImpl implements IOrchestratorService {
                 //Fan-out
                 .groupBy(petition -> petition.getType()) //LEND / RETURN
                 //Fan-in
-                .flatMap(g -> {
+                .flatMapSequential(g -> {
                     String type = g.key();
                     Actor actor = actors.stream()
                             .filter(actor1 -> actor1.supports(type))
@@ -49,6 +49,18 @@ public class OrchestratorServiceImpl implements IOrchestratorService {
                                 .doOnNext(res -> System.out.println("Proceso exitoso"))
                                 .doOnError(err-> System.out.println("Procesamiento falló - "+err.getMessage()))
                                 .onErrorContinue((err, p) -> System.out.println("Petitición omitida " + err.getMessage()));
+                    }else if("INSPECT".equals(type)){
+                        return g.filter(petition -> petition.getPriority() >= 7)
+                                .doOnNext(petition -> System.out.println(String.format("Petición [INSPECT] con ID: %s filtrada (priority >= 7)",
+                                        petition.getPetitionId())))
+                                .sort((a,b) -> Integer.compare(b.getPriority(), a.getPriority()))
+                                .doOnNext(petition -> System.out.println(String.format("Petición [INSPECT] con ID: %s ordenada por prioridad descendente",
+                                        petition.getPetitionId())))
+                                .flatMapSequential(petition -> actor.handle(petition)
+                                        .doOnSubscribe(s -> System.out.println("Procesando petición de tipo [INSPECT] con ID "+petition.getPetitionId()))
+                                        .doOnNext(res -> System.out.println("Proceso [INSPECT] exitoso"))
+                                        .doOnError(err-> System.out.println("Procesamiento [INSPECT] falló - "+err.getMessage())))
+                                .onErrorContinue((err, p) -> System.out.println("Petitición [INSPECT] omitida " + err.getMessage()));
                     }else{
                         return g.flatMap(petition -> actor.handle(petition)
                                 .doOnSubscribe(s -> System.out.println("Procesando petición de tipo [RETURN] con ID "+petition.getPetitionId()))
