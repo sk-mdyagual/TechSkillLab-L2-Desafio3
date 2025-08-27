@@ -1,8 +1,10 @@
 package co.com.techskill.lab2.library.service.impl;
 
 import co.com.techskill.lab2.library.actor.Actor;
-import co.com.techskill.lab2.library.repository.IPetitionRepository;
+import co.com.techskill.lab2.library.domain.dto.PetitionDTO;
 import co.com.techskill.lab2.library.service.IOrchestratorService;
+import co.com.techskill.lab2.library.service.dummy.BookService;
+import co.com.techskill.lab2.library.service.dummy.PetitionService;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.scheduler.Schedulers;
@@ -12,25 +14,27 @@ import java.util.List;
 
 @Service
 public class OrchestratorServiceImpl implements IOrchestratorService {
-    private final IPetitionRepository petitionRepository;
+    private final PetitionService petitionService;
+    private final BookService bookService;
     private final List<Actor> actors;
 
-    public OrchestratorServiceImpl(IPetitionRepository petitionRepository, List<Actor> actors) {
-        this.petitionRepository = petitionRepository;
+    public OrchestratorServiceImpl(PetitionService petitionService, BookService bookService, List<Actor> actors) {
+        this.petitionService = petitionService;
+        this.bookService = bookService;
         this.actors = actors;
     }
 
     @Override
     public Flux<String> orchestrate() {
-        return petitionRepository.findAll()
+        return petitionService.findAll()
                 .limitRate(20)
                 .publishOn(Schedulers.boundedElastic())
                 .doOnSubscribe(s -> System.out.println("Inicio orquestación..."))
                 .doOnNext(petition ->
-                        System.out.println(String.format("Petición encontrada con ID: %s de tipo %s",
-                                petition.getPetitionId(),petition.getType())))
+                        System.out.printf("Petición encontrada con ID: %s de tipo %s%n",
+                                petition.getPetitionId(),petition.getType()))
                 //Fan-out
-                .groupBy(petition -> petition.getType()) //LEND / RETURN
+                .groupBy(PetitionDTO::getType) //LEND / RETURN /INSPECT
                 //Fan-in
                 .flatMap(g -> {
                     String type = g.key();
@@ -49,12 +53,19 @@ public class OrchestratorServiceImpl implements IOrchestratorService {
                                 .doOnNext(res -> System.out.println("Proceso exitoso"))
                                 .doOnError(err-> System.out.println("Procesamiento falló - "+err.getMessage()))
                                 .onErrorContinue((err, p) -> System.out.println("Petitición omitida " + err.getMessage()));
-                    }else{
+                    } else if ("RETURN".equals(type)){
                         return g.flatMap(petition -> actor.handle(petition)
                                 .doOnSubscribe(s -> System.out.println("Procesando petición de tipo [RETURN] con ID "+petition.getPetitionId()))
                                 .doOnNext(res -> System.out.println("Proceso exitoso"))
                                 .doOnError(err-> System.out.println("Procesamiento falló - "+err.getMessage())),
                                 4)
+                                .onErrorContinue((err, p) -> System.out.println("Petitición omitida " + err.getMessage()));
+                    } else {
+                        return g.filter(petition -> petition.getPriority() >= 7)
+                                .flatMapSequential(petition -> actor.handle(petition)
+                                .doOnSubscribe(s -> System.out.println("Procesando petición de tipo [INSPECT] con ID "+petition.getPetitionId()))
+                                .doOnNext(res -> System.out.println("Proceso exitoso"))
+                                .doOnError(err-> System.out.println("Procesamiento falló - "+err.getMessage())))
                                 .onErrorContinue((err, p) -> System.out.println("Petitición omitida " + err.getMessage()));
                     }
 
