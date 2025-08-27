@@ -99,13 +99,10 @@ public class BookServiceImpl implements IBookService {
 
     @Override
     public Mono<BookDTO> save(BookDTO bookDTO) {
-        bookDTO.setBookId(UUID.randomUUID().toString().substring(0,10));
-        bookDTO.setAvailable(true);
-        return bookRepository
-                .save(bookMapper.toEntity(bookDTO))
-                .map(bookMapper::toDTO);
+       return null;
 
     }
+
 
 
 
