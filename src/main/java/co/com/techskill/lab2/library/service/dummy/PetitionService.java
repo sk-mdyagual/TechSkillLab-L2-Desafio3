@@ -71,7 +71,6 @@ public class PetitionService {
     public Flux<PetitionDTO> dummyHighPriority(){
         return dummyFindAll()
                 .filter(p -> p.getPriority() != null && p.getPriority() >= 7);
-        //.sort((p1, p2) -> Integer.compare(p2.getPriority(), p1.getPriority()));
     }
 
     public Mono<String> processReturnPetitions(String id) {

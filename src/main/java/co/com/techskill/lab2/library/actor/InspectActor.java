@@ -4,7 +4,6 @@ import co.com.techskill.lab2.library.domain.dto.PetitionDTO;
 import co.com.techskill.lab2.library.service.dummy.BookService;
 import reactor.core.publisher.Mono;
 
-import java.time.Duration;
 
 public class InspectActor implements Actor{
     private final BookService bookRepository;

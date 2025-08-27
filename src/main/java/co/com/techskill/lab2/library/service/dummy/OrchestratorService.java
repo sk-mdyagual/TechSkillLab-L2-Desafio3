@@ -4,15 +4,11 @@ import co.com.techskill.lab2.library.actor.Actor;
 import co.com.techskill.lab2.library.actor.InspectActor;
 import co.com.techskill.lab2.library.actor.LendActor;
 import co.com.techskill.lab2.library.actor.ReturnActor;
-import co.com.techskill.lab2.library.domain.dto.PetitionDTO;
-import co.com.techskill.lab2.library.domain.entity.Petition;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.scheduler.Schedulers;
 
 import java.time.Duration;
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 @Service
@@ -36,7 +32,6 @@ public class OrchestratorService {
     }
 
     public Flux<String> dummyOrchestrate() {
-        //el dummyhighpriority solo traera peticiones de prioridad 7 o mas
         return petitionRepository.dummyHighPriority()
                 .limitRate(20)
                 .publishOn(Schedulers.boundedElastic())
@@ -44,11 +39,8 @@ public class OrchestratorService {
                 .doOnNext(petition ->
                         System.out.println(String.format("Petición encontrada con ID: %s de tipo %s",
                                 petition.getPetitionId(),petition.getType())))
-                //Fan-out
-                //aca se ordena las peticiones
                 .sort((p1, p2) -> Integer.compare(p2.getPriority(), p1.getPriority()))
                 .groupBy(petition -> petition.getType()) //LEND / RETURN
-                //Fan-in
                 .flatMap(g -> {
                     String type = g.key();
                     Actor actor = actors.stream()
