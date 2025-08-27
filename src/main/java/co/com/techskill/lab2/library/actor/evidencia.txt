@@ -1,0 +1,151 @@
+Inicio orquestación LEND/RETURN...
+Petición encontrada con ID: ad4801f0-9 de tipo RETURN
+Agrupación por tipo: RETURN
+Procesando petición [INSPECT] con ID 2f5fca21-b
+Procesando petición de tipo [RETURN] con ID ad4801f0-9
+Petición encontrada con ID: d5120259-4 de tipo LEND
+Agrupación por tipo: LEND
+Petición encontrada con ID: 09ef7d35-d de tipo RETURN
+Procesando petición de tipo [RETURN] con ID 09ef7d35-d
+Petición encontrada con ID: 0e6a31b1-f de tipo RETURN
+Procesando petición de tipo [RETURN] con ID 0e6a31b1-f
+Petición encontrada con ID: 905dfc53-7 de tipo LEND
+Petición encontrada con ID: 2a6214f1-c de tipo RETURN
+Procesando petición de tipo [RETURN] con ID 2a6214f1-c
+Petición encontrada con ID: 0ff09c9e-5 de tipo LEND
+Petición encontrada con ID: inspect-11 de tipo INSPECT
+Agrupación por tipo: INSPECT
+Procesando petición de tipo [INSPECT] con ID inspect-11
+Petición encontrada con ID: inspect-12 de tipo INSPECT
+Procesando petición de tipo [INSPECT] con ID inspect-12
+Petición encontrada con ID: inspect-17 de tipo INSPECT
+Procesando petición de tipo [INSPECT] con ID inspect-17
+Petición encontrada con ID: inspect-18 de tipo INSPECT
+Procesando petición de tipo [INSPECT] con ID inspect-18
+Petición [LEND] con ID: 0ff09c9e-5 en cola
+Procesando petición con ID 0ff09c9e-5
+Proceso exitoso
+Next: [RETURN] petition for book: 51ed516f-a with priority 5
+Proceso exitoso
+Proceso exitoso
+Proceso exitoso
+Next: [RETURN] petition for book: 6600ab76-3 with priority 4
+Next: [RETURN] petition for book: eb25c2d4-7 with priority 3
+Next: [RETURN] petition for book: 297c17d8-4 with priority 4
+Proceso exitoso
+Proceso exitoso
+Next: [INSPECT] petition for book: 6600ab76-3 with priority 4
+Proceso exitoso
+Proceso [INSPECT] exitoso
+Procesando petición [INSPECT] con ID 4c9ef769-9
+Next: [INSPECT] petition for book: 12a13228-0 with priority 7
+Proceso exitoso
+Next: [INSPECT] petition for book: 51ed516f-a with priority 5
+Next: [INSPECT] petition for book: 11b553eb-b with priority 6
+Next: [INSPECT] petition for book: 12a13228-0 with priority 3
+Proceso exitoso
+Next: [LEND] petition for book: 11b553eb-b with priority 6
+Petición [LEND] con ID: 905dfc53-7 en cola
+Procesando petición con ID 905dfc53-7
+Proceso [INSPECT] exitoso
+Next: [INSPECT] petition for book: 51ed516f-a with priority 7
+Procesando petición [INSPECT] con ID 9cc825c1-7
+Proceso [INSPECT] exitoso
+Next: [INSPECT] petition for book: 12a13228-0 with priority 7
+Procesando petición [INSPECT] con ID 4ebc9aa6-f
+Proceso exitoso
+Next: [LEND] petition for book: 6600ab76-3 with priority 5
+Petición [LEND] con ID: d5120259-4 en cola
+Procesando petición con ID d5120259-4
+Proceso [INSPECT] exitoso
+Next: [INSPECT] petition for book: 3c24c2fa-3 with priority 7
+Procesando petición [INSPECT] con ID 8595a9b7-7
+Proceso exitoso
+Next: [LEND] petition for book: 11b553eb-b with priority 4
+Proceso [INSPECT] exitoso
+Next: [INSPECT] petition for book: 51ed516f-a with priority 7
+Procesando petición [INSPECT] con ID cbfdd0aa-c
+Proceso [INSPECT] exitoso
+Next: [INSPECT] petition for book: 1940136a-2 with priority 7
+Procesando petición [INSPECT] con ID 86084e60-e
+Proceso [INSPECT] exitoso
+Next: [INSPECT] petition for book: 11b553eb-b with priority 7
+Procesando petición [INSPECT] con ID inspect-03
+Proceso [INSPECT] exitoso
+Next: [INSPECT] petition for book: 51ed516f-a with priority 7
+Procesando petición [INSPECT] con ID inspect-07
+Proceso [INSPECT] exitoso
+Next: [INSPECT] petition for book: eb25c2d4-7 with priority 7
+Procesando petición [INSPECT] con ID inspect-15
+Proceso [INSPECT] exitoso
+Next: [INSPECT] petition for book: eb25c2d4-7 with priority 7
+Procesando petición [INSPECT] con ID 09c09cc8-b
+Proceso [INSPECT] exitoso
+Next: [INSPECT] petition for book: 6600ab76-3 with priority 8
+Procesando petición [INSPECT] con ID 5b2dae36-f
+Proceso [INSPECT] exitoso
+Next: [INSPECT] petition for book: 51ed516f-a with priority 8
+Procesando petición [INSPECT] con ID inspect-01
+Proceso [INSPECT] exitoso
+Next: [INSPECT] petition for book: 6600ab76-3 with priority 8
+Procesando petición [INSPECT] con ID inspect-05
+Proceso [INSPECT] exitoso
+Next: [INSPECT] petition for book: 297c17d8-4 with priority 8
+Procesando petición [INSPECT] con ID inspect-09
+Proceso [INSPECT] exitoso
+Next: [INSPECT] petition for book: 6600ab76-3 with priority 8
+Procesando petición [INSPECT] con ID inspect-13
+Proceso [INSPECT] exitoso
+Next: [INSPECT] petition for book: 297c17d8-4 with priority 8
+Procesando petición [INSPECT] con ID inspect-20
+Proceso [INSPECT] exitoso
+Next: [INSPECT] petition for book: 11b553eb-b with priority 8
+Procesando petición [INSPECT] con ID 6d7e3b2c-5
+Proceso [INSPECT] exitoso
+Next: [INSPECT] petition for book: eb25c2d4-7 with priority 9
+Procesando petición [INSPECT] con ID 890fd155-0
+Proceso [INSPECT] exitoso
+Next: [INSPECT] petition for book: 51ed516f-a with priority 9
+Procesando petición [INSPECT] con ID 2da99667-d
+Proceso [INSPECT] exitoso
+Next: [INSPECT] petition for book: 1940136a-2 with priority 9
+Procesando petición [INSPECT] con ID 742330cf-0
+Proceso [INSPECT] exitoso
+Next: [INSPECT] petition for book: 12a13228-0 with priority 9
+Procesando petición [INSPECT] con ID inspect-02
+Proceso [INSPECT] exitoso
+Next: [INSPECT] petition for book: 12a13228-0 with priority 9
+Procesando petición [INSPECT] con ID inspect-06
+Proceso [INSPECT] exitoso
+Next: [INSPECT] petition for book: 3c24c2fa-3 with priority 9
+Procesando petición [INSPECT] con ID inspect-10
+Proceso [INSPECT] exitoso
+Next: [INSPECT] petition for book: 12a13228-0 with priority 9
+Procesando petición [INSPECT] con ID inspect-14
+Proceso [INSPECT] exitoso
+Next: [INSPECT] petition for book: 3c24c2fa-3 with priority 9
+Procesando petición [INSPECT] con ID inspect-19
+Proceso [INSPECT] exitoso
+Next: [INSPECT] petition for book: 51ed516f-a with priority 9
+Procesando petición [INSPECT] con ID 1a1a1a1a-1
+Proceso [INSPECT] exitoso
+Next: [INSPECT] petition for book: 11b553eb-b with priority 9
+Procesando petición [INSPECT] con ID 2b2b2b2b-2
+Proceso [INSPECT] exitoso
+Next: [INSPECT] petition for book: 6600ab76-3 with priority 9
+Procesando petición [INSPECT] con ID 3c3c3c3c-3
+Proceso [INSPECT] exitoso
+Next: [INSPECT] petition for book: 12a13228-0 with priority 9
+Procesando petición [INSPECT] con ID 4d4d4d4d-4
+Proceso [INSPECT] exitoso
+Next: [INSPECT] petition for book: 1940136a-2 with priority 9
+Procesando petición [INSPECT] con ID inspect-04
+Proceso [INSPECT] exitoso
+Next: [INSPECT] petition for book: 11b553eb-b with priority 10
+Procesando petición [INSPECT] con ID inspect-08
+Proceso [INSPECT] exitoso
+Next: [INSPECT] petition for book: 1940136a-2 with priority 10
+Procesando petición [INSPECT] con ID inspect-16
+Proceso [INSPECT] exitoso
+Next: [INSPECT] petition for book: 1940136a-2 with priority 10
+Orchestration complete
