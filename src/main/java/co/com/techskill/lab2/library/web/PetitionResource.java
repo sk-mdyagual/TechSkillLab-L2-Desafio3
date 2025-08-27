@@ -46,4 +46,16 @@ public class PetitionResource {
     public Flux<String> checkPetitions(@RequestBody PetitionDTO petitionDTO) {
         return petitionService.checkPriorities(petitionDTO);
     }
+
+    @PostMapping("/inspect/create-sample")
+    public Flux<ResponseEntity<PetitionDTO>> createSampleInspectPetitions() {
+        PetitionDTO highPriorityInspect = new PetitionDTO("INSPECT", 9, "BOOK001");
+        PetitionDTO mediumPriorityInspect = new PetitionDTO("INSPECT", 7, "BOOK002");
+        PetitionDTO lowPriorityInspect = new PetitionDTO("INSPECT", 5, "BOOK003");
+        PetitionDTO veryHighPriorityInspect = new PetitionDTO("INSPECT", 10, "BOOK004");
+
+        return Flux.just(highPriorityInspect, mediumPriorityInspect, lowPriorityInspect, veryHighPriorityInspect)
+                .flatMap(petitionService::save)
+                .map(ResponseEntity::ok);
+    }
 }
