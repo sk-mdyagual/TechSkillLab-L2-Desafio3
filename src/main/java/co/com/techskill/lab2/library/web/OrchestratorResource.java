@@ -22,6 +22,6 @@ public class OrchestratorResource {
     @GetMapping(name="/start",
     produces = MediaType.TEXT_EVENT_STREAM_VALUE)
     public Flux<String> start(){
-        return orchestratorService.orchestrate();
+        return orchestratorService.orchestrate().doOnNext(res -> System.out.println("Ejecucion del orquestador"));
     }
 }

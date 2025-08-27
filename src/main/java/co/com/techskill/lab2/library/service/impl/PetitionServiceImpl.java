@@ -95,7 +95,7 @@ public class PetitionServiceImpl implements IPetitionService {
     @Override
     public Flux<PetitionDTO> findByPriority(Integer p) {
         return petitionRepository.findAll()
-                .filter(petition -> Objects.equals(petition.getPriority(), p))
+                .filter(petition ->petition.getPriority()>p)
                 .map(petitionMapper::toDTO);
     }
 
