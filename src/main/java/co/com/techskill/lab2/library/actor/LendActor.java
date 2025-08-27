@@ -1,5 +1,6 @@
 package co.com.techskill.lab2.library.actor;
 
+import co.com.techskill.lab2.library.domain.dto.PetitionDTO;
 import co.com.techskill.lab2.library.domain.entity.Petition;
 import co.com.techskill.lab2.library.repository.IBookRepository;
 import org.springframework.stereotype.Component;
@@ -22,7 +23,7 @@ public class LendActor implements Actor {
     }
 
     @Override
-    public Mono<String> handle(Petition petition) {
+    public Mono<String> handle(PetitionDTO petition) {
         return Mono.zip(
                 Mono.just(petition),
                 bookRepository.findByBookId(petition.getBookId()))
